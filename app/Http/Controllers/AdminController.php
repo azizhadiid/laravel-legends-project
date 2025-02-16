@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,7 +29,7 @@ class UserController extends Controller
         ]);
 
         // Menambah Data ke dalam tabel Users
-        User::create([
+        Admin::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -37,7 +37,7 @@ class UserController extends Controller
 
         // Flash message sukses
         Session::flash('success', 'Registrasi berhasil! Silakan login.');
-        return redirect()->route('login');
+        return redirect()->route('login.admin');
     }
 
     /**

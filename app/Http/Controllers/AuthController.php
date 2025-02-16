@@ -16,6 +16,11 @@ class AuthController extends Controller
         return view('login');
     }
 
+    public function loginAdmin()
+    {
+        return view('admin.login');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -42,6 +47,22 @@ class AuthController extends Controller
         }
 
         return back()->withErrors('Login Invalid')->onlyInput('email');
+    }
+
+    public function storeAdmin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        // Gunakan guard 'admin'
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/admin/dashboard'); // Redirect ke halaman admin
+        }
+
+        return back()->withErrors(['email' => 'Login Invalid'])->onlyInput('email');
     }
 
     public function logout(Request $request)

@@ -129,7 +129,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_session'
     ),
 
     /*
@@ -213,5 +213,14 @@ return [
     */
 
     'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
+
+    'admin_session' => [
+        'driver' => 'database',
+        'table' => 'admin_sessions',
+        'lifetime' => 120,
+        'expire_on_close' => false,
+        'encrypt' => false,
+    ],
+
 
 ];
