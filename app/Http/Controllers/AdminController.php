@@ -19,26 +19,7 @@ class AdminController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
-    {
-        // Validasi data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email', // Pastikan email unik
-            'password' => 'required|min:6|confirmed',
-        ]);
-
-        // Menambah Data ke dalam tabel Users
-        Admin::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-
-        // Flash message sukses
-        Session::flash('success', 'Registrasi berhasil! Silakan login.');
-        return redirect()->route('login.admin');
-    }
+    public function create(Request $request) {}
 
     /**
      * Store a newly created resource in storage.

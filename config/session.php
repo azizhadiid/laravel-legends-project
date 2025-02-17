@@ -213,14 +213,4 @@ return [
     */
 
     'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
-
-    'admin_session' => [
-        'driver' => 'database',
-        'table' => 'admin_sessions',
-        'lifetime' => 120,
-        'expire_on_close' => false,
-        'encrypt' => false,
-    ],
-
-
 ];

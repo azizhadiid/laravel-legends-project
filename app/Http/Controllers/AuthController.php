@@ -16,11 +16,6 @@ class AuthController extends Controller
         return view('login');
     }
 
-    public function loginAdmin()
-    {
-        return view('admin.login');
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -40,26 +35,14 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            # code...
             $request->session()->regenerate();
 
-            return redirect()->intended('home');
-        }
+            // Cek role user setelah login
+            if (Auth::user()->role === 'admin') {
+                return redirect()->intended('/admin/dashboard'); // Redirect ke dashboard admin
+            }
 
-        return back()->withErrors('Login Invalid')->onlyInput('email');
-    }
-
-    public function storeAdmin(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        // Gunakan guard 'admin'
-        if (Auth::guard('admin')->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/admin/dashboard'); // Redirect ke halaman admin
+            return redirect()->intended('/home'); // Redirect user biasa ke home
         }
 
         return back()->withErrors(['email' => 'Login Invalid'])->onlyInput('email');

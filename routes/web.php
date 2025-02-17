@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Models\User;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Str;
@@ -27,18 +26,13 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-// Jika admin suskes login
-Route::middleware(['auth:admin', 'admin.session'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    });
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
 });
-
-
 
 // Route untuk ke Login dan Register dan Forgot Password and logout yang hanya bisa diakses jika belum login
 Route::middleware('guest')->group(function () {
-    // Route Untuk Login user
+    // Route Untuk Login user dan admin
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'store']);
 
@@ -92,16 +86,6 @@ Route::middleware('guest')->group(function () {
             ? redirect()->route('login')->with('status', __($status))
             : back()->withErrors(['email' => [__($status)]]);
     })->name('password.update');
-
-    // Route untuk login admin
-    Route::get('/admin/register', function () {
-        return view('admin.register');
-    });
-
-    Route::post('/admin/register/create', [AdminController::class, 'create']);
-
-    Route::get('/admin/login', [AuthController::class, 'loginAdmin'])->name('login.admin');
-    Route::post('/admin/login', [AuthController::class, 'storeAdmin']);
 });
 
 // End Routes

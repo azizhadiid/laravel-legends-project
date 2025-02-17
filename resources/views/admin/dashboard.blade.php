@@ -64,7 +64,7 @@
     <div class="content">
         <div class="topbar">
             <h5>Welcome, Admin</h5>
-            <a href="" class="logout">Logout</a>
+            <a href="{{url('/logout')}}" class="logout">Logout</a>
         </div>
         <div class="container mt-4">
             <h3>Dashboard Overview</h3>
@@ -96,5 +96,10 @@
             </div>
         </div>
     </div>
+
+    {{-- Switch Alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- Kode JS --}}
+    <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
 </html>
