@@ -23,14 +23,14 @@ class UserController extends Controller
     {
         // Validasi data
         $request->validate([
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email', // Pastikan email unik
             'password' => 'required|min:6|confirmed',
         ]);
 
         // Menambah Data ke dalam tabel Users
         User::create([
-            'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);

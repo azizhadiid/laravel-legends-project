@@ -30,8 +30,8 @@
                             @csrf
                             <!-- Name -->
                             <div class="mb-3">
-                                <label for="Name" class="form-label">Name</label>
-                                <input id="Name" type="text" name="name" class="form-control" required>
+                                <label for="username" class="form-label">Username</label>
+                                <input id="username" type="text" name="username" class="form-control" required>
                                 <div class="text-danger small"></div>
                             </div>
 
