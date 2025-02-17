@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,15 +21,22 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     // Jika User Sukses login
     Route::get('/logout', [AuthController::class, 'logout']);
-    // Route Home
+    // Route Home dan khusus user penyewa
     Route::get('/home', function () {
         return view('home');
     });
+
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+
+    // Route Khusus Admin
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    });
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-});
 
 // Route untuk ke Login dan Register dan Forgot Password and logout yang hanya bisa diakses jika belum login
 Route::middleware('guest')->group(function () {

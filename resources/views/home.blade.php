@@ -10,6 +10,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Legends Room</a>
+            <a class="navbar-brand" href="{{url('/profile')}}">Profile</a>
             <div class="d-flex">
                 <a href="{{url('/logout')}}" class="btn btn-danger logout">Logout</a>
             </div>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Hubungan ke tabel users
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete(); // Hubungan ke tabel users
             $table->string('phone_number', 20)->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('city', 100)->nullable();
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('profile_picture')->nullable(); // Path gambar profil
             $table->string('provider_name', 100)->nullable(); // Nama provider jika menggunakan OAuth
             $table->timestamps();
+            $table->string('nama', 255)->nullable();
         });
     }
 
