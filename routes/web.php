@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Models\User;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Str;
@@ -35,6 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     });
+
+    Route::get('/admin/profile', [AdminController::class, 'show'])->name('admin.profile.show');
+    Route::post('/admin/profile', [AdminController::class, 'update'])->name('admin.profile.update');
 });
 
 

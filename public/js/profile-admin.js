@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     const logoutButton = document.querySelector(".logout"); // Ambil tombol logout
-    // Only debugin
-    // logoutButton.addEventListener("click", function () {
-    //     console.log("Hello World");
-    // });
     
     if (logoutButton) { // Pastikan tombol ada
         logoutButton.addEventListener("click", function (event) {

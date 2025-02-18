@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
         body {
             display: flex;
         }
+
         .sidebar {
             width: 250px;
             height: 100vh;
@@ -18,28 +20,33 @@
             padding-top: 20px;
             position: fixed;
         }
+
         .sidebar a {
             color: white;
             text-decoration: none;
             padding: 10px 20px;
             display: block;
         }
+
         .sidebar a:hover {
             background: #495057;
         }
+
         .content {
             margin-left: 250px;
             width: 100%;
             padding: 20px;
         }
+
         .topbar {
             background: #f8f9fa;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .logout {
             background: #dc3545;
             color: white;
@@ -47,11 +54,14 @@
             border-radius: 5px;
             text-decoration: none;
         }
+
         .logout:hover {
             background: #c82333;
         }
+
     </style>
 </head>
+
 <body>
     <div class="sidebar">
         <h4 class="text-center">Admin Panel</h4>
@@ -67,32 +77,37 @@
             <a href="{{url('/logout')}}" class="logout">Logout</a>
         </div>
         <div class="container mt-4">
-            <h3>Dashboard Overview</h3>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card text-white bg-primary mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Users</h5>
-                            <p class="card-text">120</p>
-                        </div>
-                    </div>
+            <h3>Admin Profile</h3>
+            <div class="card p-4">
+                <div class="text-center">
+                    <img src="{{ asset('img/' . ($adminProfile->profile_picture ?? 'test.jpg')) }}" class="rounded-circle border" width="120" height="120"
+                        alt="Profile Picture">
                 </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-success mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">New Orders</h5>
-                            <p class="card-text">45</p>
-                        </div>
+                
+                <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label">Nama</label>
+                        <input type="text" class="form-control" name="nama" value="{{ Auth::user()->adminProfile->nama ?? '' }}">
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-warning mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Pending Requests</h5>
-                            <p class="card-text">12</p>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label">Role</label>
+                        <input type="text" class="form-control" name="role" value="">
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" name="phone_number" value="">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" name="address" value="">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Profile Picture</label>
+                        <input type="file" class="form-control" name="profile_picture">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                </form>
             </div>
         </div>
     </div>
@@ -100,6 +115,7 @@
     {{-- Switch Alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- Kode JS --}}
-    <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/profile-admin.js') }}"></script>
 </body>
+
 </html>
