@@ -16,8 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete(); // Hubungan ke tabel users
             $table->string('employee_id', 50)->unique()->nullable(); // ID Pegawai Admin
             $table->string('nama', 255)->nullable();
-            $table->string('role', 50)->default('admin'); // Peran admin
-            $table->json('permissions')->nullable(); // Hak akses admin (misalnya CRUD akses)
+            $table->string('permissions')->nullable(); // Hak akses admin (misalnya CRUD akses)
             $table->string('phone_number', 20)->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('city', 100)->nullable();

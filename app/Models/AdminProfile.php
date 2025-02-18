@@ -13,7 +13,6 @@ class AdminProfile extends Model
         'user_id',
         'employee_id',
         'nama',
-        'role',
         'permissions',
         'phone_number',
         'address',

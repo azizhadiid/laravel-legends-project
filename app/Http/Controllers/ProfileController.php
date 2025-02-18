@@ -73,9 +73,12 @@ class ProfileController extends Controller
             'nama' => 'nullable|string|max:255'
         ]);
 
-        // Update atau buat data profil
         $profile = $user->profile ?? new UserProfile();
         $profile->fill($request->except('profile_picture'));
+
+        if (!$profile->exists) {
+            $profile->user_id = $user->id; // Set user_id jika profil baru
+        }
 
         if ($request->hasFile('profile_picture')) {
             $file = $request->file('profile_picture');
