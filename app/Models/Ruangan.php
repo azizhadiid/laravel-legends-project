@@ -11,7 +11,7 @@ class Ruangan extends Model
 
     protected $table = 'ruangan';
 
-    protected $fillable = ['nama_ruangan', 'deskripsi', 'kapasitas', 'gambar'];
+    protected $fillable = ['nama_ruangan', 'deskripsi', 'kapasitas', 'gambar', 'category', 'rating', 'location', 'harga'];
 
     public function admins()
     {

@@ -37,6 +37,10 @@ class RuanganController extends Controller
             'deskripsi' => 'nullable|string',
             'kapasitas' => 'nullable|integer',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category' => 'nullable|string',
+            'rating' => 'nullable|integer',
+            'location' => 'nullable|string',
+            'harga' => 'nullable|integer',
         ]);
 
         $gambarNama = null;
@@ -50,7 +54,11 @@ class RuanganController extends Controller
             'nama_ruangan' => $request->nama_ruangan,
             'deskripsi' => $request->deskripsi,
             'kapasitas' => $request->kapasitas,
-            'gambar' => $gambarNama, // Simpan hanya nama file ke database
+            'gambar' => $gambarNama ?? null, // Simpan hanya nama file ke database
+            'category' => $request->category,
+            'rating' => $request->rating,
+            'location' => $request->location,
+            'harga' => $request->harga
         ]);
 
         $admin = AdminProfile::where('employee_id', Auth::user()->adminProfile->employee_id)->first();
@@ -91,6 +99,10 @@ class RuanganController extends Controller
             'deskripsi' => 'nullable|string',
             'kapasitas' => 'nullable|integer',
             'foto_ruangan' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category' => 'nullable|string',
+            'rating' => 'nullable|integer',
+            'location' => 'nullable|string',
+            'harga' => 'nullable|integer',
         ]);
 
         // Jika ada file gambar baru di-upload
@@ -113,7 +125,11 @@ class RuanganController extends Controller
         $ruangan->update([
             'nama_ruangan' => $request->nama_ruangan,
             'deskripsi' => $request->deskripsi,
-            'kapasitas' => $request->kapasitas
+            'kapasitas' => $request->kapasitas,
+            'category' => $request->category,
+            'rating' => $request->rating,
+            'location' => $request->location,
+            'harga' => $request->harga
         ]);
 
         return redirect()->route('ruangan.index')->with('success', 'Ruangan berhasil diperbarui!');

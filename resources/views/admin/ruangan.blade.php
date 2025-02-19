@@ -89,6 +89,10 @@
                     <tr>
                         <th>Nama Ruangan</th>
                         <th>Deskripsi</th>
+                        <th>Kategori</th>
+                        <th>Rating</th>
+                        <th>Lokasi</th>
+                        <th>Harga</th>
                         <th>Foto</th>
                         <th>Aksi</th>
                     </tr>
@@ -98,6 +102,11 @@
                     <tr>
                         <td>{{ $r->nama_ruangan }}</td>
                         <td>{{ $r->deskripsi }}</td>
+                        <td>{{ $r->kapasitas }}</td>
+                        <td>{{ $r->category }}</td>
+                        <td>{{ $r->rating }}</td>
+                        <td>{{ $r->location }}</td>
+                        <td>{{ $r->harga }}</td>
                         <td>
                             @if($r->gambar)
                             <img src="{{ asset('img/ruangan/' . $r->gambar) }}" alt="Foto Ruangan" width="100">

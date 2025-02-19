@@ -93,6 +93,22 @@
                     <input type="number" name="kapasitas" class="form-control">
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="category">Kategori</label>
+                    <input type="text" name="category"  id="category" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="rating">Rating</label>
+                    <input type="number" name="rating"  id="rating" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Lokasi</label>
+                    <input type="text" name="location"  id="location" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="harga">Harga</label>
+                    <input type="number" name="harga"  id="harga" class="form-control">
+                </div>
+                <div class="mb-3">
                     <label class="form-label">Gambar</label>
                     <input type="file" name="gambar" class="form-control">
                 </div>

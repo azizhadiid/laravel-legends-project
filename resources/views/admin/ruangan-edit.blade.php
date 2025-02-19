@@ -89,6 +89,36 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="kapasitas" class="form-label">Kapasitas</label>
+                    <input type="number" class="form-control" id="kapasitas" name="kapasitas"
+                        value="{{ $ruangan->kapasitas }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Kategori</label>
+                    <input type="text" class="form-control" id="category" name="category"
+                        value="{{ $ruangan->category }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <input type="number" class="form-control" id="rating" name="rating"
+                        value="{{ $ruangan->rating }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Lokasi</label>
+                    <input type="text" class="form-control" id="location" name="location"
+                        value="{{ $ruangan->location }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="harga" class="form-label">Harga</label>
+                    <input type="number" class="form-control" id="harga" name="harga"
+                        value="{{ $ruangan->harga }}" required>
+                </div>
+
+                <div class="mb-3">
                     <label for="deskripsi" class="form-label">Deskripsi</label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi"
                         rows="3">{{ $ruangan->deskripsi }}</textarea>
