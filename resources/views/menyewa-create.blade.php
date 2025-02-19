@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -19,10 +21,20 @@
     </nav>
 
     <div class="container mt-5">
-        <div class="alert alert-success">
-            <h4>Welcome, Home Page!</h4>
-            <p>Selamat datang di halaman Home. Anda telah berhasil login.</p>
-        </div>
+        <h1>Sewa Ruangan {{ $ruangan->nama_ruangan }}</h1>
+        <form action="{{ route('sewa.store', $ruangan->id) }}" method="POST">
+            @csrf
+            <label>Jam Mulai:</label>
+            <input type="datetime-local" name="jam_mulai" required>
+
+            <label>Jam Selesai:</label>
+            <input type="datetime-local" name="jam_selesai" required>
+
+            <label>Keperluan:</label>
+            <textarea name="keperluan" required></textarea>
+
+            <button type="submit">Ajukan Penyewaan</button>
+        </form>
     </div>
 
     {{-- Bootstrap 5 --}}
@@ -32,4 +44,5 @@
     {{-- Kode JS --}}
     <script src="{{ asset('js/home.js') }}"></script>
 </body>
+
 </html>

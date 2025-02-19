@@ -102,7 +102,6 @@
                     <tr>
                         <td>{{ $r->nama_ruangan }}</td>
                         <td>{{ $r->deskripsi }}</td>
-                        <td>{{ $r->kapasitas }}</td>
                         <td>{{ $r->category }}</td>
                         <td>{{ $r->rating }}</td>
                         <td>{{ $r->location }}</td>

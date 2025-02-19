@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\SewaRuanganController;
 
 Route::get('/', function () {
   return view('welcome');
@@ -31,6 +32,11 @@ Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
   Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+  // Route Melakukan penyewaan
+  Route::get('/sewa', [SewaRuanganController::class, 'index'])->name('sewa.index');
+  Route::get('/sewa/{id}', [SewaRuanganController::class, 'create'])->name('sewa.create');
+  Route::post('/sewa/{id}', [SewaRuanganController::class, 'store'])->name('sewa.store');
+  Route::get('/history', [SewaRuanganController::class, 'history'])->name('sewa.history');
 
 
   // Route Khusus Admin

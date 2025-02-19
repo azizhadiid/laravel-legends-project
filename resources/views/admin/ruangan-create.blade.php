@@ -78,6 +78,20 @@
         </div>
         <div class="container mt-4">
             <h3>Upload Ruangan</h3>
+            @if ($errors->any())
+            <div class="alert alert-danger mt-3 alert-dismissible fade show" role="alert">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-exclamation-circle-fill me-2"></i>
+                    <div>
+                        @foreach ($errors->all() as $error)
+                        <p class="m-0">{{ $error }}</p>
+                        @endforeach
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
             <form action="{{ route('ruangan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
@@ -94,19 +108,19 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="category">Kategori</label>
-                    <input type="text" name="category"  id="category" class="form-control">
+                    <input type="text" name="category" id="category" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="rating">Rating</label>
-                    <input type="number" name="rating"  id="rating" class="form-control">
+                    <input type="number" name="rating" id="rating" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Lokasi</label>
-                    <input type="text" name="location"  id="location" class="form-control">
+                    <input type="text" name="location" id="location" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="harga">Harga</label>
-                    <input type="number" name="harga"  id="harga" class="form-control">
+                    <input type="number" name="harga" id="harga" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Gambar</label>
@@ -121,6 +135,17 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- Kode JS --}}
     <script src="{{ asset('js/ruanganAdmin.js') }}"></script>
+
+    @if (session('warning'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Peringatan!',
+            text: '{{ session("warning") }}',
+        });
+
+    </script>
+    @endif
 </body>
 
 </html>

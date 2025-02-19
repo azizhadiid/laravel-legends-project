@@ -32,6 +32,13 @@ class RuanganController extends Controller
      */
     public function store(Request $request)
     {
+        // Cek apakah admin memiliki profile yang lengkap
+        $admin = Auth::user()->adminProfile;
+
+        if (!$admin || !$admin->nama || !$admin->phone_number || !$admin->address) {
+            return redirect()->route('ruangan.create')->with('warning', 'Lengkapi profil Anda sebelum mengupload ruangan.');
+        }
+
         $request->validate([
             'nama_ruangan' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',

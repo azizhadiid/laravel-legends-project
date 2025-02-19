@@ -19,4 +19,9 @@ class Ruangan extends Model
             ->withPivot('role')
             ->withTimestamps();
     }
+
+    public function penyewaan()
+    {
+        return $this->hasMany(SewaRuangan::class);
+    }
 }
