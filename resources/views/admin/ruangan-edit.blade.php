@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
         body {
             display: flex;
         }
+
         .sidebar {
             width: 250px;
             height: 100vh;
@@ -18,28 +20,33 @@
             padding-top: 20px;
             position: fixed;
         }
+
         .sidebar a {
             color: white;
             text-decoration: none;
             padding: 10px 20px;
             display: block;
         }
+
         .sidebar a:hover {
             background: #495057;
         }
+
         .content {
             margin-left: 250px;
             width: 100%;
             padding: 20px;
         }
+
         .topbar {
             background: #f8f9fa;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .logout {
             background: #dc3545;
             color: white;
@@ -47,11 +54,14 @@
             border-radius: 5px;
             text-decoration: none;
         }
+
         .logout:hover {
             background: #c82333;
         }
+
     </style>
 </head>
+
 <body>
     <div class="sidebar">
         <h4 class="text-center">Admin Panel</h4>
@@ -67,39 +77,40 @@
             <a href="{{url('/logout')}}" class="logout">Logout</a>
         </div>
         <div class="container mt-4">
-            <h3>Dashboard Overview</h3>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card text-white bg-primary mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Users</h5>
-                            <p class="card-text">120</p>
-                        </div>
-                    </div>
+            <h2>Edit Ruangan</h2>
+
+            <form action="{{ route('ruangan.update', $ruangan->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="mb-3">
+                    <label for="nama_ruangan" class="form-label">Nama Ruangan</label>
+                    <input type="text" class="form-control" id="nama_ruangan" name="nama_ruangan"
+                        value="{{ $ruangan->nama_ruangan }}" required>
                 </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-success mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">New Orders</h5>
-                            <p class="card-text">45</p>
-                        </div>
-                    </div>
+
+                <div class="mb-3">
+                    <label for="deskripsi" class="form-label">Deskripsi</label>
+                    <textarea class="form-control" id="deskripsi" name="deskripsi"
+                        rows="3">{{ $ruangan->deskripsi }}</textarea>
                 </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-warning mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Pending Requests</h5>
-                            <p class="card-text">12</p>
-                        </div>
-                    </div>
+
+                <div class="mb-3">
+                    <label for="foto_ruangan" class="form-label">Foto Ruangan</label>
+                    <input type="file" class="form-control" id="foto_ruangan" name="foto_ruangan">
+                    @if($ruangan->foto_ruangan)
+                    <img src="{{ asset('storage/' . $ruangan->foto_ruangan) }}" width="100">
+                    @endif
                 </div>
-            </div>
+
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
         </div>
     </div>
 
     {{-- Switch Alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- Kode JS --}}
-    <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/ruanganAdmin.js') }}"></script>
 </body>
+
 </html>

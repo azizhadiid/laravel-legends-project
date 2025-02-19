@@ -66,7 +66,7 @@
     <div class="sidebar">
         <h4 class="text-center">Admin Panel</h4>
         <a href="/admin/dashboard">Dashboard</a>
-        <a href="#">Users</a>
+        <a href="/admin/ruangan">Ruangan</a>
         <a href="#">Settings</a>
         <a href="/admin/profile">Profile</a>
         <a href="#">Logout</a>

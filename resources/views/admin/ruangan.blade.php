@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
         body {
             display: flex;
         }
+
         .sidebar {
             width: 250px;
             height: 100vh;
@@ -18,28 +20,33 @@
             padding-top: 20px;
             position: fixed;
         }
+
         .sidebar a {
             color: white;
             text-decoration: none;
             padding: 10px 20px;
             display: block;
         }
+
         .sidebar a:hover {
             background: #495057;
         }
+
         .content {
             margin-left: 250px;
             width: 100%;
             padding: 20px;
         }
+
         .topbar {
             background: #f8f9fa;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .logout {
             background: #dc3545;
             color: white;
@@ -47,11 +54,14 @@
             border-radius: 5px;
             text-decoration: none;
         }
+
         .logout:hover {
             background: #c82333;
         }
+
     </style>
 </head>
+
 <body>
     <div class="sidebar">
         <h4 class="text-center">Admin Panel</h4>
@@ -67,39 +77,54 @@
             <a href="{{url('/logout')}}" class="logout">Logout</a>
         </div>
         <div class="container mt-4">
-            <h3>Dashboard Overview</h3>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card text-white bg-primary mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Users</h5>
-                            <p class="card-text">120</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-success mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">New Orders</h5>
-                            <p class="card-text">45</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-warning mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Pending Requests</h5>
-                            <p class="card-text">12</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Flash Message -->
+            @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            <a href="{{ route('ruangan.create') }}" class="btn btn-primary mb-3">Tambah Ruangan</a>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nama Ruangan</th>
+                        <th>Deskripsi</th>
+                        <th>Foto</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($ruangan as $r)
+                    <tr>
+                        <td>{{ $r->nama_ruangan }}</td>
+                        <td>{{ $r->deskripsi }}</td>
+                        <td>
+                            @if($r->gambar)
+                            <img src="{{ asset('img/ruangan/' . $r->gambar) }}" alt="Foto Ruangan" width="100">
+                            @else
+                            Tidak ada foto
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('ruangan.edit', $r->id) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('ruangan.destroy', $r->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 
     {{-- Switch Alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- Kode JS --}}
-    <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/ruanganAdmin.js') }}"></script>
 </body>
+
 </html>
