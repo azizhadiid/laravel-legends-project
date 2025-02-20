@@ -21,7 +21,6 @@ class UserProfile extends Model
         'birth_date',
         'profile_picture',
         'provider_name',
-        'nama'
     ];
 
     public function user()

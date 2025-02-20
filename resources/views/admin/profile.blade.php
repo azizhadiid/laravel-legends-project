@@ -39,9 +39,9 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                 <img src="{{ asset('img/' . (Auth::user()->adminProfile->profile_picture ?? 'test.jpg')) }}"
-                    alt="Profile" class="rounded-circle img-sm" style="width: 80px; height: 80px;">
-                <h2>{{ Auth::user()->adminProfile->nama ?? '' }}</h2>
-                <h3>{{ Auth::user()->adminProfile->department ?? '' }}</h3>
+                    alt="Profile" class="rounded-circle img-sm mb-3" style="width: 120px; height: 120px;">
+                <h2 style="font-size: 25px">{{ Auth::user()->nama ?? '' }}</h2>
+                <h3 style="font-size: 20px">{{ Auth::user()->adminProfile->department ?? '' }}</h3>
                 <div class="social-links mt-2">
                     <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                     <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -77,7 +77,7 @@
 
                         <div class="row">
                             <div class="col-lg-3 col-md-4 label ">Nama Panjang</div>
-                            <div class="col-lg-9 col-md-8">{{ Auth::user()->adminProfile->nama ?? '' }}</div>
+                            <div class="col-lg-9 col-md-8">{{ Auth::user()->nama ?? '' }}</div>
                         </div>
 
                         <div class="row">
@@ -102,7 +102,7 @@
 
                         <div class="row">
                             <div class="col-lg-3 col-md-4 label">Jenis Kelamin</div>
-                            <div class="col-lg-9 col-md-8">(436) {{ Auth::user()->adminProfile->gender ?? '' }}</div>
+                            <div class="col-lg-9 col-md-8">{{ Auth::user()->adminProfile->gender ?? '' }}</div>
                         </div>
 
                         <div class="row">
@@ -121,12 +121,6 @@
                                 <label class="form-label" for="employee_id">ID Petugas</label>
                                 <input type="text" class="form-control" name="employee_id" id="employee_id"
                                     value="{{ Auth::user()->adminProfile->employee_id ?? '' }}">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="nama">Nama</label>
-                                <input type="text" class="form-control" name="nama" id="nama"
-                                    value="{{ Auth::user()->adminProfile->nama ?? '' }}">
                             </div>
 
                             <div class="mb-3">

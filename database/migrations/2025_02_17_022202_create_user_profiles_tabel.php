@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('profile_picture')->nullable(); // Path gambar profil
             $table->string('provider_name', 100)->nullable(); // Nama provider jika menggunakan OAuth
             $table->timestamps();
-            $table->string('nama', 255)->nullable();
         });
     }
 

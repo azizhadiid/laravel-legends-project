@@ -5,6 +5,8 @@
 @section('subtitle', 'Form Tambah Ruangan')
 
 @section('konten')
+{{-- Switch Alert --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="row">
     @if ($errors->any())
     <div class="alert alert-danger mt-3 alert-dismissible fade show" role="alert">

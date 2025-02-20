@@ -54,7 +54,7 @@
                             <td>{{ $r->category }}</td>
                             <td>{{ $r->rating }}</td>
                             <td>{{ $r->location }}</td>
-                            <td>{{ $r->harga }}</td>
+                            <td>Rp {{ number_format($r->harga, 0, ',', '.') }}</td>
                             <td>
                                 @if($r->gambar)
                                 <img src="{{ asset('img/ruangan/' . $r->gambar) }}" alt="Foto Ruangan" width="100">

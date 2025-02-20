@@ -35,7 +35,7 @@ class RuanganController extends Controller
         // Cek apakah admin memiliki profile yang lengkap
         $admin = Auth::user()->adminProfile;
 
-        if (!$admin || !$admin->nama || !$admin->phone_number || !$admin->address) {
+        if (!$admin || !$admin->employee_id || !$admin->phone_number || !$admin->address) {
             return redirect()->route('ruangan.create')->with('warning', 'Lengkapi profil Anda sebelum mengupload ruangan.');
         }
 

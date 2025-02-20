@@ -48,7 +48,7 @@
                         <form>
                             <div class="mb-3">
                                 <label class="form-label">Full Name</label>
-                                <input type="text" class="form-control" value="{{ $user->profile->nama ?? '-'}}" readonly>
+                                <input type="text" class="form-control" value="{{ $user->nama ?? '-'}}" readonly>
                             </div>
     
                             <div class="mb-3">

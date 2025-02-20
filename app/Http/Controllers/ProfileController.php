@@ -70,7 +70,6 @@ class ProfileController extends Controller
             'gender' => 'nullable|in:male,female,other',
             'birth_date' => 'nullable|date',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'nama' => 'nullable|string|max:255'
         ]);
 
         $profile = $user->profile ?? new UserProfile();

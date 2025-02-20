@@ -47,7 +47,7 @@
                         @foreach($sewaRuangan as $index => $sewa)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $sewa->user->username }}</td>
+                            <td>{{ $sewa->user->nama }}</td>
                             <td>{{ $sewa->ruangan->nama_ruangan }}</td>
                             <td>{{ $sewa->jam_mulai }}</td>
                             <td>{{ $sewa->jam_selesai }}</td>

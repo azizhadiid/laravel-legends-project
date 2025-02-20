@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
 use App\Models\SewaRuangan;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SewaRuanganController extends Controller
 {
@@ -33,6 +34,12 @@ class SewaRuanganController extends Controller
      */
     public function store(Request $request, $id)
     {
+        $userProfile = Auth::user()->profile;
+
+        if (!$userProfile) {
+            return back()->with('error', 'Profil pengguna tidak ditemukan. Pastikan Anda sudah melengkapi profil.');
+        }
+
         $request->validate([
             'jam_mulai' => 'required|date',
             'jam_selesai' => 'required|date|after:jam_mulai',

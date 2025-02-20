@@ -57,7 +57,6 @@ class AdminController extends Controller
         // Validasi data
         $request->validate([
             'employee_id' => 'nullable|string|max:50',
-            'nama' => 'nullable|string|max:255',
             'permissions' => 'nullable|string|max:255',
             'phone_number' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',

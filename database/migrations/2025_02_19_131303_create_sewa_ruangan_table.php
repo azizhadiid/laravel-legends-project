@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('sewa_ruangan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete(); // Menghubungkan dengan users
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('ruangan_id')->constrained('ruangan')->cascadeOnDelete(); // Menghubungkan dengan ruangan
             $table->dateTime('jam_mulai'); // Jam mulai sewa
             $table->dateTime('jam_selesai'); // Jam selesai sewa
             $table->text('keperluan')->nullable(); // Keperluan sewa
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // Status penyewaan
+            $table->string('bank')->default('Bank BRI');
+            $table->string('no_tagihan')->unique();
             $table->timestamps();
         });
     }

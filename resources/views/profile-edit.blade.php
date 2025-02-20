@@ -46,12 +46,6 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label class="form-label" for="nama">Nama</label>
-                                <input type="text" name="nama" id="nama" class="form-control"
-                                    value="{{ $user->profile->nama ?? '-' }}">
-                            </div>
-
-                            <div class="mb-3">
                                 <label class="form-label" for="phone_number">Nomor Telepon</label>
                                 <input type="text" name="phone_number" id="phone_number" class="form-control"
                                     value="{{ $user->profile->phone_number ?? '-' }}">
