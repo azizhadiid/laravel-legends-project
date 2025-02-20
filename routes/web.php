@@ -15,6 +15,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\SewaRuanganController;
+use App\Http\Controllers\AdminSewaRuanganController;
 
 Route::get('/', function () {
   return view('welcome');
@@ -53,6 +54,9 @@ Route::middleware('auth')->group(function () {
   Route::get('/admin/ruangan/edit/{id}', [RuanganController::class, 'edit'])->name('ruangan.edit'); // Form edit ruangan
   Route::post('/admin/ruangan/update/{id}', [RuanganController::class, 'update'])->name('ruangan.update'); // Update ruangan
   Route::delete('/admin/ruangan/delete/{id}', [RuanganController::class, 'destroy'])->name('ruangan.destroy'); // Hapus ruangan
+  // Route Untuk Verifikasi penyewa ruangan
+  Route::get('/admin/sewa', [AdminSewaRuanganController::class, 'index'])->name('admin.sewa.index');
+  Route::post('/admin/sewa/{id}/verifikasi', [AdminSewaRuanganController::class, 'verifikasi'])->name('admin.sewa.verifikasi');
 });
 
 

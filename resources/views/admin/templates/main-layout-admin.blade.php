@@ -81,7 +81,7 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link collapsed" href="{{url('/admin/sewa')}}">
                     <i class="bi-person-bounding-box"></i>
                     <span>Penyewa Ruangan</span>
                 </a>
@@ -99,7 +99,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>@yield('subtitle')</h1>
+            <h1 class="mb-3">@yield('subtitle')</h1>
         </div><!-- End Page Title -->
 
         <section class="section dashboard">
