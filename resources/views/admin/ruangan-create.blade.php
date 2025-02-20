@@ -1,151 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.templates.main-layout-admin')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            display: flex;
-        }
+@section('title', 'Tambah Ruangan')
 
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background: #343a40;
-            color: white;
-            padding-top: 20px;
-            position: fixed;
-        }
+@section('subtitle', 'Form Tambah Ruangan')
 
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: block;
-        }
-
-        .sidebar a:hover {
-            background: #495057;
-        }
-
-        .content {
-            margin-left: 250px;
-            width: 100%;
-            padding: 20px;
-        }
-
-        .topbar {
-            background: #f8f9fa;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .logout {
-            background: #dc3545;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        .logout:hover {
-            background: #c82333;
-        }
-
-    </style>
-</head>
-
-<body>
-    <div class="sidebar">
-        <h4 class="text-center">Admin Panel</h4>
-        <a href="/admin/dashboard">Dashboard</a>
-        <a href="/admin/ruangan">Ruangan</a>
-        <a href="#">Settings</a>
-        <a href="/admin/profile">Profile</a>
-        <a href="#">Logout</a>
-    </div>
-    <div class="content">
-        <div class="topbar">
-            <h5>Welcome, Admin</h5>
-            <a href="{{url('/logout')}}" class="logout">Logout</a>
-        </div>
-        <div class="container mt-4">
-            <h3>Upload Ruangan</h3>
-            @if ($errors->any())
-            <div class="alert alert-danger mt-3 alert-dismissible fade show" role="alert">
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-exclamation-circle-fill me-2"></i>
-                    <div>
-                        @foreach ($errors->all() as $error)
-                        <p class="m-0">{{ $error }}</p>
-                        @endforeach
-                    </div>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+@section('konten')
+<div class="row">
+    @if ($errors->any())
+    <div class="alert alert-danger mt-3 alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-exclamation-circle-fill me-2"></i>
+            <div>
+                @foreach ($errors->all() as $error)
+                <p class="m-0">{{ $error }}</p>
+                @endforeach
             </div>
-            @endif
-
-            <form action="{{ route('ruangan.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="mb-3">
-                    <label class="form-label">Nama Ruangan</label>
-                    <input type="text" name="nama_ruangan" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Deskripsi</label>
-                    <textarea name="deskripsi" class="form-control"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Kapasitas</label>
-                    <input type="number" name="kapasitas" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="category">Kategori</label>
-                    <input type="text" name="category" id="category" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="rating">Rating</label>
-                    <input type="number" name="rating" id="rating" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="location">Lokasi</label>
-                    <input type="text" name="location" id="location" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="harga">Harga</label>
-                    <input type="number" name="harga" id="harga" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Gambar</label>
-                    <input type="file" name="gambar" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Upload</button>
-            </form>
         </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-
-    {{-- Switch Alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- Kode JS --}}
-    <script src="{{ asset('js/ruanganAdmin.js') }}"></script>
-
-    @if (session('warning'))
-    <script>
-        Swal.fire({
-            icon: 'warning',
-            title: 'Peringatan!',
-            text: '{{ session("warning") }}',
-        });
-
-    </script>
     @endif
-</body>
+    <div class="col-lg">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Upload Ruangan</h5>
 
-</html>
+                <!-- Upload Ruangan -->
+                <form action="{{ route('ruangan.store') }}" method="POST" enctype="multipart/form-data" class="row g-3">
+                    @csrf
+                    <div class="col-12">
+                        <label for="nama_ruangan" class="form-label">Nama Ruangan</label>
+                        <input type="text" name="nama_ruangan" id="nama_ruangan" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <textarea name="deskripsi" id="deskripsi" class="form-control"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="kapasitas" class="form-label">Kapasitas</label>
+                        <input type="number" name="kapasitas" id="kapasitas" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="category" class="form-label">Kategori</label>
+                        <input type="text" name="category" id="category" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="rating" class="form-label">Rating</label>
+                        <input type="number" name="rating" id="rating" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="location" class="form-label">Lokasi</label>
+                        <input type="text" name="location" id="location" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="number" name="harga" id="harga" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="gambar" class="form-label">Gambar</label>
+                        <input type="file" name="gambar" id="gambar" class="form-control">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <a href="{{url('/admin/ruangan')}}" class="btn btn-secondary">Cencel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@if (session('warning'))
+<script>
+    Swal.fire({
+        icon: 'warning',
+        title: 'Peringatan!',
+        text: '{{ session("warning") }}',
+    });
+
+</script>
+@endif
+@endsection

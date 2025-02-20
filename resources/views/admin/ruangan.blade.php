@@ -1,138 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.templates.main-layout-admin')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            display: flex;
-        }
+@section('title', 'Ruangan')
 
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background: #343a40;
-            color: white;
-            padding-top: 20px;
-            position: fixed;
-        }
+@section('subtitle', 'Tabel Ruangan')
 
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: block;
-        }
+@section('konten')
+<div class="row">
+    <div class="col-lg-12">
 
-        .sidebar a:hover {
-            background: #495057;
-        }
-
-        .content {
-            margin-left: 250px;
-            width: 100%;
-            padding: 20px;
-        }
-
-        .topbar {
-            background: #f8f9fa;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .logout {
-            background: #dc3545;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        .logout:hover {
-            background: #c82333;
-        }
-
-    </style>
-</head>
-
-<body>
-    <div class="sidebar">
-        <h4 class="text-center">Admin Panel</h4>
-        <a href="/admin/dashboard">Dashboard</a>
-        <a href="/admin/ruangan">Ruangan</a>
-        <a href="#">Settings</a>
-        <a href="/admin/profile">Profile</a>
-        <a href="#">Logout</a>
-    </div>
-    <div class="content">
-        <div class="topbar">
-            <h5>Welcome, Admin</h5>
-            <a href="{{url('/logout')}}" class="logout">Logout</a>
-        </div>
-        <div class="container mt-4">
-            <!-- Flash Message -->
-            @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-
-            <a href="{{ route('ruangan.create') }}" class="btn btn-primary mb-3">Tambah Ruangan</a>
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Nama Ruangan</th>
-                        <th>Deskripsi</th>
-                        <th>Kategori</th>
-                        <th>Rating</th>
-                        <th>Lokasi</th>
-                        <th>Harga</th>
-                        <th>Foto</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($ruangan as $r)
-                    <tr>
-                        <td>{{ $r->nama_ruangan }}</td>
-                        <td>{{ $r->deskripsi }}</td>
-                        <td>{{ $r->category }}</td>
-                        <td>{{ $r->rating }}</td>
-                        <td>{{ $r->location }}</td>
-                        <td>{{ $r->harga }}</td>
-                        <td>
-                            @if($r->gambar)
-                            <img src="{{ asset('img/ruangan/' . $r->gambar) }}" alt="Foto Ruangan" width="100">
-                            @else
-                            Tidak ada foto
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('ruangan.edit', $r->id) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('ruangan.destroy', $r->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title m-0">Data Ruangan</h5>
+                    <a href="{{ route('ruangan.create') }}" class="btn btn-outline-info">Tambah Ruangan</a>
+                </div>
+                {{-- Alert Sukses --}}
+                @if (session('success'))
+                <div class="alert alert-success mt-3 alert-dismissible fade show" role="alert">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-exclamation-circle-fill me-2"></i>
+                        <div>
+                            {{ session('success') }}
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                <p>Tempat untuk menambahkan data ruangan. Di sini, Anda dapat memasukkan informasi lengkap tentang
+                    setiap ruangan yang tersedia di Legends Room. Pastikan untuk memasukkan detail seperti nama ruangan,
+                    ukuran, kapasitas maksimal, fasilitas yang tersedia, dan harga sewa per jam. Ruangan yang telah
+                    ditambahkan akan muncul di daftar ruangan yang dapat disewa oleh pengguna. Jika Anda memiliki foto
+                    atau gambar ruangan, silakan unggah untuk memberikan gambaran yang lebih jelas kepada calon penyewa.
+                </p>
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                    <thead>
+                        <tr>
+                            <th>Nama Ruangan</th>
+                            <th>Deskripsi</th>
+                            <th>Kategori</th>
+                            <th>Rating</th>
+                            <th>Lokasi</th>
+                            <th>Harga</th>
+                            <th>Foto</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($ruangan as $r)
+                        <tr>
+                            <td>{{ $r->nama_ruangan }}</td>
+                            <td>{{ $r->deskripsi }}</td>
+                            <td>{{ $r->category }}</td>
+                            <td>{{ $r->rating }}</td>
+                            <td>{{ $r->location }}</td>
+                            <td>{{ $r->harga }}</td>
+                            <td>
+                                @if($r->gambar)
+                                <img src="{{ asset('img/ruangan/' . $r->gambar) }}" alt="Foto Ruangan" width="100">
+                                @else
+                                Tidak ada foto
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('ruangan.edit', $r->id) }}" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('ruangan.destroy', $r->id) }}" method="POST" class="delete-form" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="btn btn-danger delete-btn" data-id="{{ $r->id }}">Hapus</button>
+                                </form>                                
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+            </div>
         </div>
     </div>
+</div>
 
-    {{-- Switch Alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- Kode JS --}}
-    <script src="{{ asset('js/ruanganAdmin.js') }}"></script>
-</body>
-
-</html>
+<script src="{{ asset('js/ruanganAdmin.js') }}"></script>
+@endsection

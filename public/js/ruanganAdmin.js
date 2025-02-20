@@ -1,25 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const logoutButton = document.querySelector(".logout"); // Ambil tombol logout
-    
-    if (logoutButton) { // Pastikan tombol ada
-        logoutButton.addEventListener("click", function (event) {
-            event.preventDefault(); // Mencegah logout langsung
-            const logoutUrl = this.getAttribute("href"); // Ambil URL logout
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault(); // Mencegah aksi default
             
+            let form = this.closest('form'); // Cari elemen form terdekat
+            if (!form) {
+                console.error("Form tidak ditemukan!"); // Debugging jika form tidak ditemukan
+                return;
+            }
+
             Swal.fire({
-                title: "Apakah Anda yakin ingin logout?",
-                text: "Anda akan keluar dari sesi saat ini.",
+                title: "Apakah Anda yakin?",
+                text: "Data ini akan dihapus secara permanen!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#d33",
                 cancelButtonColor: "#3085d6",
-                confirmButtonText: "Ya, logout!",
+                confirmButtonText: "Ya, hapus!",
                 cancelButtonText: "Batal"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = logoutUrl; // Redirect jika dikonfirmasi
+                    form.submit();
                 }
             });
         });
-    }
+    });
 });
