@@ -23,7 +23,7 @@
     @endif
     <div class="col-lg">
         <div class="card">
-            <div class="card-body" style="background-color: #FEFBF6">
+            <div class="card-body">
                 <h5 class="card-title" style="color: #B67352; font-weight: 600">Upload Ruangan</h5>
 
                 <!-- Upload Ruangan -->

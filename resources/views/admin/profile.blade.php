@@ -35,7 +35,7 @@
 
     <div class="col-xl-4">
 
-        <div class="card" style="background-color: #FEFBF6">
+        <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                 <img src="{{ asset('img/' . (Auth::user()->adminProfile->profile_picture ?? 'test.jpg')) }}"
@@ -55,10 +55,10 @@
 
     <div class="col-xl-8">
 
-        <div class="card" style="background-color: #FEFBF6">
+        <div class="card">
             <div class="card-body pt-3">
                 <!-- Bordered Tabs -->
-                <ul class="nav nav-tabs nav-tabs-bordered">
+                <ul class="nav nav-tabs ">
 
                     <li class="nav-item">
                         <button class="nav-link active" data-bs-toggle="tab"

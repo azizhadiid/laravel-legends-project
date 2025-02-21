@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('img/favicon2.png') }}" rel="icon">
+    <link href="{{ asset('img/apple-touch-icon2.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -35,13 +35,13 @@
     <style>
         .logout {
             margin-right: 20px;
-            background-color: #651609;
+            background-color: #a51404;
             color: #FEFBF6;
             font-weight: 600;
         }
 
         .logout:hover {
-            background-color: #665248;
+            background-color: #600e05;
             color: #FEFBF6;
         }
 
@@ -109,6 +109,30 @@
             font-weight: 600;
         }
 
+        .approve {
+            background-color: #0b5d30;
+            color: #FEFBF6;
+            font-weight: 600;
+        }
+
+        .approve:hover {
+            background-color: #07381d;
+            color: #FEFBF6;
+            font-weight: 600;
+        }
+
+        .reject {
+            background-color: #a51404;
+            color: #FEFBF6;
+            font-weight: 600;
+        }
+
+        .reject:hover {
+            background-color: #600e05;
+            color: #FEFBF6;
+            font-weight: 600;
+        }
+
     </style>
 
     <!-- =======================================================
@@ -126,8 +150,8 @@
     <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: #FEFBF6">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="">
+            <a href="{{url('/admin/dashboard')}}" class="logo d-flex align-items-center">
+                <img src="{{ asset('img/logo.png') }}" alt="">
                 <span class="d-none d-lg-block" style="color: #B67352">LegendsRoom</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn" style="color: #B67352"></i>

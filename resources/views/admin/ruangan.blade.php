@@ -9,7 +9,7 @@
     <div class="col-lg-12">
 
         <div class="card">
-            <div class="card-body" style="background-color: #FEFBF6">
+            <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="card-title m-0" style="color: #B67352; font-weight: 600">Data Ruangan</h5>
                     <a href="{{ route('ruangan.create') }}" class="btn tambah">Tambah Ruangan</a>
