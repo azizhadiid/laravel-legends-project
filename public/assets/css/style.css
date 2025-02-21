@@ -684,7 +684,7 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #B67352;
   transition: 0.3;
   background: #f6f9ff;
   padding: 10px 15px;
@@ -698,7 +698,7 @@ h6 {
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
+  color: #B67352;
   background: #fff;
 }
 
@@ -707,12 +707,12 @@ h6 {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
+  color: #B67352;
   background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: #B67352;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {

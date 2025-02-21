@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\SewaRuanganController;
 use App\Http\Controllers\AdminSewaRuanganController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
   return view('welcome');
@@ -41,9 +42,7 @@ Route::middleware('auth')->group(function () {
 
 
   // Route Khusus Admin
-  Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-  });
+  Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.index');
   // Route Untuk Update Profile Admin
   Route::get('/admin/profile', [AdminController::class, 'show'])->name('admin.profile.show');
   Route::post('/admin/profile', [AdminController::class, 'update'])->name('admin.profile.update');

@@ -23,47 +23,47 @@
     @endif
     <div class="col-lg">
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Upload Ruangan</h5>
+            <div class="card-body" style="background-color: #FEFBF6">
+                <h5 class="card-title" style="color: #B67352; font-weight: 600">Upload Ruangan</h5>
 
                 <!-- Upload Ruangan -->
                 <form action="{{ route('ruangan.store') }}" method="POST" enctype="multipart/form-data" class="row g-3">
                     @csrf
                     <div class="col-12">
-                        <label for="nama_ruangan" class="form-label">Nama Ruangan</label>
-                        <input type="text" name="nama_ruangan" id="nama_ruangan" class="form-control" required>
+                        <label for="nama_ruangan" class="form-label" style="color: #B67352; font-weight: 500">Nama Ruangan</label>
+                        <input type="text" name="nama_ruangan" id="nama_ruangan" class="form-control" required style="color: #B67352; font-weight: 400" >
                     </div>
                     <div class="col-12">
-                        <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <textarea name="deskripsi" id="deskripsi" class="form-control"></textarea>
+                        <label for="deskripsi" class="form-label" style="color: #B67352; font-weight: 500">Deskripsi</label>
+                        <textarea name="deskripsi" id="deskripsi" class="form-control" style="color: #B67352; font-weight: 500" required></textarea>
                     </div>
                     <div class="col-12">
-                        <label for="kapasitas" class="form-label">Kapasitas</label>
-                        <input type="number" name="kapasitas" id="kapasitas" class="form-control">
+                        <label for="kapasitas" class="form-label" style="color: #B67352; font-weight: 500">Kapasitas</label>
+                        <input type="number" name="kapasitas" id="kapasitas" class="form-control" style="color: #B67352; font-weight: 500" required>
                     </div>
                     <div class="col-12">
-                        <label for="category" class="form-label">Kategori</label>
-                        <input type="text" name="category" id="category" class="form-control">
+                        <label for="category" class="form-label" style="color: #B67352; font-weight: 500">Kategori</label>
+                        <input type="text" name="category" id="category" class="form-control" style="color: #B67352; font-weight: 500" required>
                     </div>
                     <div class="col-12">
-                        <label for="rating" class="form-label">Rating</label>
-                        <input type="number" name="rating" id="rating" class="form-control">
+                        <label for="rating" class="form-label" style="color: #B67352; font-weight: 500">Rating</label>
+                        <input type="number" name="rating" id="rating" class="form-control" style="color: #B67352; font-weight: 500" required>
                     </div>
                     <div class="col-12">
-                        <label for="location" class="form-label">Lokasi</label>
-                        <input type="text" name="location" id="location" class="form-control">
+                        <label for="location" class="form-label" style="color: #B67352; font-weight: 500">Lokasi</label>
+                        <input type="text" name="location" id="location" class="form-control" style="color: #B67352; font-weight: 500" required>
                     </div>
                     <div class="col-12">
-                        <label for="harga" class="form-label">Harga</label>
-                        <input type="number" name="harga" id="harga" class="form-control">
+                        <label for="harga" class="form-label" style="color: #B67352; font-weight: 500">Harga</label>
+                        <input type="number" name="harga" id="harga" class="form-control" style="color: #B67352; font-weight: 500" required>
                     </div>
                     <div class="col-12">
-                        <label for="gambar" class="form-label">Gambar</label>
-                        <input type="file" name="gambar" id="gambar" class="form-control">
+                        <label for="gambar" class="form-label" style="color: #B67352; font-weight: 500">Gambar</label>
+                        <input type="file" name="gambar" id="gambar" class="form-control" style="color: #B67352; font-weight: 500" required>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                        <a href="{{url('/admin/ruangan')}}" class="btn btn-secondary">Cencel</a>
+                        <button type="submit" class="btn update">Upload</button>
+                        <a href="{{url('/admin/ruangan')}}" class="btn logout">Cencel</a>
                     </div>
                 </form>
             </div>
