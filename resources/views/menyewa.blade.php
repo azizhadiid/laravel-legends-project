@@ -1,47 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('templates.main-layout-penyewa')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@section('title', 'Sewa Ruangan')
 
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Legends Room</a>
-            <a class="navbar-brand" href="{{url('/profile')}}">Profile</a>
-            <a class="navbar-brand" href="{{url('/sewa')}}">Menyewa</a>
-            <a class="navbar-brand" href="{{url('/history')}}">History</a>
-            <div class="d-flex">
-                <a href="{{url('/logout')}}" class="btn btn-danger logout">Logout</a>
+@section('konten')
+<div class="container mt-3">
+    <h2 class="text-center mb-4">Daftar Ruangan</h2>
+    <div class="row">
+        @foreach($ruangan as $r)
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <img src="{{ asset('img/ruangan/' . $r->gambar) }}" class="card-img-top"
+                    alt="Gambar Ruangan" style="height: 200px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ $r->nama_ruangan }}</h5>
+                    <p class="card-text flex-grow-1 text-muted">{{ Str::limit($r->deskripsi, 100) }}</p>
+                    <p class="card-text"><strong>Harga:</strong> Rp {{ number_format($r->harga, 0, ',', '.') }}</p>
+                    <a href="{{ route('sewa.create', $r->id) }}" class="btn-booking text-center">Sewa Sekarang</a>
+                </div>
             </div>
         </div>
-    </nav>
-
-    <div class="container mt-5">
-        <h1>Daftar Ruangan</h1>
-        <div class="grid">
-            @foreach($ruangan as $r)
-            <div class="card">
-                <img src="{{ asset('img/ruangan/' . $r->gambar) }}" alt="Gambar Ruangan">
-                <h3>{{ $r->nama_ruangan }}</h3>
-                <p>{{ $r->deskripsi }}</p>
-                <p>Harga: Rp {{ number_format($r->harga, 0, ',', '.') }}</p>
-                <a href="{{ route('sewa.create', $r->id) }}" class="btn btn-primary">Sewa</a>
-            </div>
-            @endforeach
-        </div>
+        @endforeach
     </div>
+</div>
 
-    {{-- Bootstrap 5 --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    {{-- Switch Alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- Kode JS --}}
-    <script src="{{ asset('js/home.js') }}"></script>
-</body>
-
-</html>
+@endsection

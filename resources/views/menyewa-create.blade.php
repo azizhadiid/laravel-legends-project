@@ -1,48 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('templates.main-layout-penyewa')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@section('title', 'Booking Ruangan')
 
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Legends Room</a>
-            <a class="navbar-brand" href="{{url('/profile')}}">Profile</a>
-            <a class="navbar-brand" href="{{url('/sewa')}}">Menyewa</a>
-            <div class="d-flex">
-                <a href="{{url('/logout')}}" class="btn btn-danger logout">Logout</a>
+@section('konten')
+{{-- Switch Alert --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 mb-5">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-4">
+                    <h3 class="text-center mb-4">Sewa Ruangan: <span class="" style="color: rgb(229, 134, 11)">{{ $ruangan->nama_ruangan }}</span></h3>
+                    <form action="{{ route('sewa.store', $ruangan->id) }}" method="POST">
+                        @csrf
+
+                        <!-- Jam Mulai -->
+                        <div class="mb-3">
+                            <label for="jam_mulai" class="form-label">Jam Mulai</label>
+                            <input type="datetime-local" name="jam_mulai" id="jam_mulai" class="form-control" required>
+                        </div>
+
+                        <!-- Jam Selesai -->
+                        <div class="mb-3">
+                            <label for="jam_selesai" class="form-label">Jam Selesai</label>
+                            <input type="datetime-local" name="jam_selesai" id="jam_selesai" class="form-control" required>
+                        </div>
+
+                        <!-- Keperluan -->
+                        <div class="mb-3">
+                            <label for="keperluan" class="form-label">Keperluan</label>
+                            <textarea name="keperluan" id="keperluan" class="form-control" rows="4" required></textarea>
+                        </div>
+
+                        <!-- Tombol Submit -->
+                        <div class="d-flex gap-3">
+                            <button type="submit" class="btn-booking w-100 fw-bold">Ajukan Penyewaan</button>
+                            <a  class="back w-100 fw-bold text-center" style="cursor: pointer" href="{{ route('sewa.index') }}">Batal</a>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
-    </nav>
-
-    <div class="container mt-5">
-        <h1>Sewa Ruangan {{ $ruangan->nama_ruangan }}</h1>
-        <form action="{{ route('sewa.store', $ruangan->id) }}" method="POST">
-            @csrf
-            <label>Jam Mulai:</label>
-            <input type="datetime-local" name="jam_mulai" required>
-
-            <label>Jam Selesai:</label>
-            <input type="datetime-local" name="jam_selesai" required>
-
-            <label>Keperluan:</label>
-            <textarea name="keperluan" required></textarea>
-
-            <button type="submit">Ajukan Penyewaan</button>
-        </form>
     </div>
+</div>
 
-    {{-- Bootstrap 5 --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    {{-- Switch Alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- Kode JS --}}
-    <script src="{{ asset('js/home.js') }}"></script>
-</body>
+@if (session('error'))
+<script>
+    Swal.fire({
+        icon: 'warning',
+        title: 'Peringatan!',
+        text: '{{ session("error") }}',
+    });
 
-</html>
+</script>
+@endif
+@endsection

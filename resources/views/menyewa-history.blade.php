@@ -1,57 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('templates.main-layout-penyewa')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@section('title', 'Riwayat Booking')
 
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Legends Room</a>
-            <a class="navbar-brand" href="{{url('/profile')}}">Profile</a>
-            <a class="navbar-brand" href="{{url('/sewa')}}">Menyewa</a>
-            <div class="d-flex">
-                <a href="{{url('/logout')}}" class="btn btn-danger logout">Logout</a>
+@section('konten')
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4 mb-5">
+        <div class="card-body p-4">
+            <h2 class="text-center mb-4">Riwayat Pemesanan</h2>
+            @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>⚠️ Peringatan!</strong> {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
+
+            <!-- Pencarian -->
+            <form action="{{ route('sewa.history') }}" method="GET" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control rounded-start"
+                        placeholder="Cari berdasarkan nama ruang atau acara..." value="{{ request('search') }}">
+                    <button type="submit" class="btn text-white" style="background-color: #8B5A2B;">🔍 Cari</button>
+                </div>
+            </form>
+
+            <!-- Tabel Riwayat -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover rounded-3 overflow-hidden">
+                    <thead style="background-color: #D2B48C; color: white;">
+                        <tr>
+                            <th>Nama Ruang</th>
+                            <th>Nama Acara</th>
+                            <th>Tanggal</th>
+                            <th>Waktu</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($history as $sewa)
+                        <tr>
+                            <td>{{ $sewa->ruangan->nama_ruangan }}</td>
+                            <td>{{ $sewa->keperluan }}</td>
+                            <td>{{ \Carbon\Carbon::parse($sewa->jam_mulai)->translatedFormat('d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($sewa->jam_mulai)->format('H:i') }} -
+                                {{ \Carbon\Carbon::parse($sewa->jam_selesai)->format('H:i') }}</td>
+                            <td>
+                                @if ($sewa->status == 'approved')
+                                <span class="badge bg-success">✅ Disetujui</span>
+                                @elseif ($sewa->status == 'pending')
+                                <span class="badge bg-warning text-dark">⏳ Pending</span>
+                                @else
+                                <span class="badge bg-danger">❌ Ditolak</span>
+                                @endif
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">Belum ada riwayat pemesanan.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
-    </nav>
-
-    <div class="container mt-5">
-        <h1>Riwayat Penyewaan</h1>
-        <table>
-            <tr>
-                <th>Nama Ruangan</th>
-                <th>Jam Mulai</th>
-                <th>Jam Selesai</th>
-                <th>Keperluan</th>
-                <th>Status</th>
-                <th>Bank</th>
-                <th>No Tagihan</th>
-            </tr>
-            @foreach($history as $h)
-            <tr>
-                <td>{{ $h->ruangan->nama_ruangan }}</td>
-                <td>{{ $h->jam_mulai }}</td>
-                <td>{{ $h->jam_selesai }}</td>
-                <td>{{ $h->keperluan }}</td>
-                <td>{{ ucfirst($h->status) }}</td>
-                <td>{{ $h->bank }}</td>
-                <td>{{ $h->no_tagihan }}</td>
-            </tr>
-            @endforeach
-        </table>
     </div>
+</div>
 
-    {{-- Bootstrap 5 --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    {{-- Switch Alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- Kode JS --}}
-    <script src="{{ asset('js/home.js') }}"></script>
-</body>
-
-</html>
+@endsection

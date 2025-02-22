@@ -62,11 +62,28 @@ class SewaRuanganController extends Controller
         return redirect()->route('sewa.history')->with('success', 'Penyewaan berhasil diajukan.');
     }
 
-    public function history()
+    public function history(Request $request)
     {
-        $history = SewaRuangan::where('user_id', Auth::id())->get();
+        $query = SewaRuangan::where('user_id', Auth::id());
+
+        // Jika ada pencarian
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->whereHas('ruangan', function ($q) use ($search) {
+                $q->where('nama_ruangan', 'LIKE', "%{$search}%");
+            })->orWhere('keperluan', 'LIKE', "%{$search}%");
+        }
+
+        $history = $query->get();
+
+        // Jika tidak ada hasil, beri pesan error
+        if ($history->isEmpty()) {
+            return redirect()->route('sewa.history')->with('error', 'Data tidak ditemukan.');
+        }
+
         return view('menyewa-history', compact('history'));
     }
+
 
 
     /**

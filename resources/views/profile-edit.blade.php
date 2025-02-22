@@ -1,130 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('templates.main-layout-penyewa')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@section('title', 'Profil Edit')
 
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Legends Room</a>
-            <a class="navbar-brand" href="{{url('/profile')}}">Profile</a>
-            <a class="navbar-brand" href="{{url('/profile')}}">Menyewa</a>
-            <div class="d-flex">
-                <a href="{{url('/logout')}}" class="btn btn-danger logout">Logout</a>
-            </div>
-        </div>
-    </nav>
+@section('konten')
+<style>
+    .form-control {
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
 
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card shadow-lg">
-                    <div class="card-header bg-primary text-white text-center">
-                        <h3>Edit Profile</h3>
-                    </div>
-                    <div class="card-body">
-                        @if ($errors->any())
-                        <div class="alert alert-danger mt-3 alert-dismissible fade show" role="alert">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-exclamation-circle-fill me-2"></i>
-                                <div>
-                                    @foreach ($errors->all() as $error)
-                                    <p class="m-0">{{ $error }}</p>
-                                    @endforeach
-                                </div>
+    .form-control:focus {
+        border-color: #A0522D;
+        box-shadow: 0 0 10px rgba(160, 82, 45, 0.3);
+    }
+
+    .btn {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn:hover {
+        opacity: 0.85;
+    }
+
+</style>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header text-white text-center rounded-top"
+                    style="background: linear-gradient(135deg, #8B4513, #A0522D);">
+                    <h3 class="mb-0">Edit Profile</h3>
+                </div>
+                <div class="card-body">
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-exclamation-circle-fill me-2"></i>
+                            <div>
+                                @foreach ($errors->all() as $error)
+                                <p class="m-0">{{ $error }}</p>
+                                @endforeach
                             </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                        @endif
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    @endif
 
-                        <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
 
-                            <div class="mb-3">
-                                <label class="form-label" for="phone_number">Nomor Telepon</label>
-                                <input type="text" name="phone_number" id="phone_number" class="form-control"
-                                    value="{{ $user->profile->phone_number ?? '-' }}">
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nomor Telepon</label>
+                            <input type="text" name="phone_number" class="form-control shadow-sm"
+                                value="{{ $user->profile->phone_number ?? '-' }}">
+                        </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" for="gender">Jenis Kelamin</label>
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="male"
-                                        {{ ($user->profile->gender ?? '') == 'male' ? 'selected' : '' }}>Laki-laki
-                                    </option>
-                                    <option value="female"
-                                        {{ ($user->profile->gender ?? '') == 'female' ? 'selected' : '' }}>Perempuan
-                                    </option>
-                                    <option value="other"
-                                        {{ ($user->profile->gender ?? '') == 'other' ? 'selected' : '' }}>Lainnya
-                                    </option>
-                                </select>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Jenis Kelamin</label>
+                            <select name="gender" class="form-control shadow-sm">
+                                <option value="">Pilih Jenis Kelamin</option>
+                                <option value="male" {{ ($user->profile->gender ?? '') == 'male' ? 'selected' : '' }}>
+                                    Laki-laki</option>
+                                <option value="female"
+                                    {{ ($user->profile->gender ?? '') == 'female' ? 'selected' : '' }}>Perempuan
+                                </option>
+                                <option value="other" {{ ($user->profile->gender ?? '') == 'other' ? 'selected' : '' }}>
+                                    Lainnya</option>
+                            </select>
+                        </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" for="birth_date">Tanggal Lahir</label>
-                                <input type="date" name="birth_date" id="birth_date" class="form-control"
-                                    value="{{ $user->profile->birth_date ?? '-' }}">
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Tanggal Lahir</label>
+                            <input type="date" name="birth_date" class="form-control shadow-sm"
+                                value="{{ $user->profile->birth_date ?? '-' }}">
+                        </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Alamat</label>
-                                <textarea name="address"
-                                    class="form-control">{{ $user->profile->address ?? '' }}</textarea>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Alamat</label>
+                            <textarea name="address"
+                                class="form-control shadow-sm">{{ $user->profile->address ?? '' }}</textarea>
+                        </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" for="city">Kota</label>
-                                <input type="text" name="city" id="city" class="form-control"
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Kota</label>
+                                <input type="text" name="city" class="form-control shadow-sm"
                                     value="{{ $user->profile->city ?? '-' }}">
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" for="state">Provinsi</label>
-                                <input type="text" name="state" id="state" class="form-control"
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Provinsi</label>
+                                <input type="text" name="state" class="form-control shadow-sm"
                                     value="{{ $user->profile->state ?? '-' }}">
                             </div>
+                        </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" for="country">Negara</label>
-                                <input type="text" name="country" id="country" class="form-control"
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Negara</label>
+                                <input type="text" name="country" class="form-control shadow-sm"
                                     value="{{ $user->profile->country ?? '-' }}">
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" for="postal_code">Kode Pos</label>
-                                <input type="text" name="postal_code" id="postal_code" class="form-control"
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Kode Pos</label>
+                                <input type="text" name="postal_code" class="form-control shadow-sm"
                                     value="{{ $user->profile->postal_code ?? '-' }}">
                             </div>
+                        </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Profile Picture</label>
-                                <input type="file" name="profile_picture" class="form-control">
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Foto Profil</label>
+                            <input type="file" name="profile_picture" class="form-control shadow-sm">
+                        </div>
 
-                            <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-success px-4">Save Changes</button>
-                                <a href="{{ route('profile.show') }}" class="btn btn-secondary px-4">Cancel</a>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success px-4 rounded-pill fw-bold">Save
+                                Changes</button>
+                            <a href="{{ route('profile.show') }}"
+                                class="btn btn-secondary px-4 rounded-pill fw-bold">Cancel</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    {{-- Bootstrap 5 --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    {{-- Switch Alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- Kode JS --}}
-    <script src="{{ asset('js/profile.js') }}"></script>
-</body>
 
-</html>
+@endsection

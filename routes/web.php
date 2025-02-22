@@ -8,15 +8,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\AdminController;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RuanganUserController;
 use App\Http\Controllers\SewaRuanganController;
 use App\Http\Controllers\AdminSewaRuanganController;
-use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
   return view('welcome');
@@ -27,9 +29,7 @@ Route::middleware('auth')->group(function () {
   // Untuk Logout
   Route::get('/logout', [AuthController::class, 'logout']);
   // Route Home dan khusus user penyewa
-  Route::get('/home', function () {
-    return view('home');
-  });
+  Route::get('/home', [HomeController::class, 'index']);
   // Route Untuk Update Profile User
   Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
   Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -39,6 +39,9 @@ Route::middleware('auth')->group(function () {
   Route::get('/sewa/{id}', [SewaRuanganController::class, 'create'])->name('sewa.create');
   Route::post('/sewa/{id}', [SewaRuanganController::class, 'store'])->name('sewa.store');
   Route::get('/history', [SewaRuanganController::class, 'history'])->name('sewa.history');
+  // Route untuk pergi ke ruangan
+  Route::get('/ruangan', [RuanganUserController::class, 'index'])->name('ruangan.user.index');
+  Route::get('/ruangan/detail/{id}', [RuanganUserController::class, 'show'])->name('ruangan.user.detail');
 
 
   // Route Khusus Admin
