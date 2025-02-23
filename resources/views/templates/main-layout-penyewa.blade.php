@@ -161,7 +161,7 @@
 
 </head>
 
-<body style="background-color: #FEFBF6; padding-top: 70px;">
+<body style="background-color: #FEFBF6; padding-top: 60px;">
     {{-- navigasi --}}
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #603F26; z-index: 1030;">
         <div class="container p-2">

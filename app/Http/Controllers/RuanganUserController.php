@@ -16,25 +16,6 @@ class RuanganUserController extends Controller
         return view('ruangan', compact('ruangan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $ruangan = Ruangan::findOrFail($id); // Cari ruangan berdasarkan ID

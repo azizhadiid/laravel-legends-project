@@ -131,9 +131,9 @@
                               type: 'pie',
                               radius: '50%',
                               data: [
-                                  { value: 5, name: 'Sewa', itemStyle: { color: '#D2A679' } },   // Coklat Latte
-                                  { value: 2, name: 'Ruangan', itemStyle: { color: '#A7C7A5' } }, // Hijau Sage
-                                  { value: 1, name: 'User', itemStyle: { color: '#3A6EA5' } }    // Biru Denim
+                                  { value: {{ $totalSewa }}, name: 'Sewa', itemStyle: { color: '#D2A679' } },   // Coklat Latte
+                                  { value: {{ $totalRuangan }}, name: 'Ruangan', itemStyle: { color: '#A7C7A5' } }, // Hijau Sage
+                                  { value: {{ $totalUsers }}, name: 'User', itemStyle: { color: '#3A6EA5' } }    // Biru Denim
                               ],
                               label: {
                                   color: '#8B5A2B', // Coklat tua untuk label agar terlihat kontras

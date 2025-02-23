@@ -132,7 +132,7 @@
 
 </head>
 
-<body style="background-color: #FEFBF6; padding-top: 70px;">
+<body style="background-color: #FEFBF6; padding-top: 60px;">
     {{-- navigasi --}}
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #603F26; z-index: 1030;">
         <div class="container p-2">
@@ -241,7 +241,9 @@
                             <!-- Rating bintang -->
                             <p class="card-text">
                                 <strong>Rating: </strong>
-                                {!! str_repeat('⭐', $ruangan->rating) !!}
+                                @for ($i = 0; $i < $ruangan->rating; $i++)
+                                    ⭐
+                                @endfor
                             </p>
 
                             <p class="card-text"><strong>Harga: </strong>Rp{{ number_format($ruangan->harga, 0, ',', '.') }}</p>
@@ -418,7 +420,7 @@
                 <div class="col-12 col-lg-4">
                     <div class="card border-0 h-100 d-flex flex-column">
                         <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
-                            <a href="#!">
+                            <a href="https://www.instagram.com/imeliamnda?igsh=MTllNDVrbm41ZWZidQ==">
                                 <img class="img-fluid bsb-scale bsb-hover-scale-up" loading="lazy"
                                     src="{{ asset('img/team/imel.jpg') }}" alt="Imelia Amanda">
                             </a>
@@ -441,7 +443,7 @@
                             <ul class="nav mb-0 bsb-nav-sep">
                                 <li class="nav-item text-secondary">
                                     <a class="nav-link link-secondary p-0 pe-3 d-inline-flex align-items-center"
-                                        href="#!">
+                                        href="https://www.instagram.com/imeliamnda?igsh=MTllNDVrbm41ZWZidQ==">
                                         <i class="fa-solid fa-pen-nib" style="font-size: 20px; color: rgb(229, 134, 11)"></i>
                                         <span class="ms-2 fs-6">UIUX Design</span>
                                     </a>

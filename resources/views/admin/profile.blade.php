@@ -120,7 +120,8 @@
                             <div class="mb-3">
                                 <label class="form-label" for="employee_id" style="color: #B67352; font-weight: 400">ID Petugas</label>
                                 <input type="text" class="form-control" name="employee_id" id="employee_id"
-                                    value="{{ Auth::user()->adminProfile->employee_id ?? '' }}" style="color: #B67352; font-weight: 400; background-color: #FEFBF6">
+                                    value="{{ Auth::user()->adminProfile->employee_id ?? '' }}" style="color: #B67352; font-weight: 400; background-color: #FEFBF6" 
+                                    {{ Auth::user()->adminProfile?->employee_id ? 'readonly' : '' }}>
                             </div>
 
                             <div class="mb-3">
@@ -128,13 +129,13 @@
                                 <select name="gender" id="gender" class="form-control" style="color: #B67352; font-weight: 400; background-color: #FEFBF6">
                                     <option value="">Pilih Jenis Kelamin</option>
                                     <option value="male"
-                                        {{ (Auth::user()->adminProfile->gender ?? '') == 'male' ? 'selected' : '' }}>
+                                        {{ (Auth::user()->adminProfile->gender ?? '') == 'Laki-laki' ? 'selected' : '' }}>
                                         Laki-laki</option>
                                     <option value="female"
-                                        {{ (Auth::user()->adminProfile->gender ?? '') == 'female' ? 'selected' : '' }}>
+                                        {{ (Auth::user()->adminProfile->gender ?? '') == 'Perempuan' ? 'selected' : '' }}>
                                         Perempuan</option>
                                     <option value="other"
-                                        {{ (Auth::user()->adminProfile->gender ?? '') == 'other' ? 'selected' : '' }}>
+                                        {{ (Auth::user()->adminProfile->gender ?? '') == 'Lainnya' ? 'selected' : '' }}>
                                         Lainnya</option>
                                 </select>
                             </div>

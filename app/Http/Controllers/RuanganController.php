@@ -10,26 +10,17 @@ use Illuminate\Support\Facades\Storage;
 
 class RuanganController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $ruangan = Ruangan::with('admins')->get();
         return view('admin.ruangan', compact('ruangan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.ruangan-create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // Cek apakah admin memiliki profile yang lengkap
@@ -76,27 +67,12 @@ class RuanganController extends Controller
         return redirect()->route('ruangan.index')->with('success', 'Ruangan berhasil ditambahkan');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $ruangan = Ruangan::findOrFail($id);
         return view('admin.ruangan-edit', compact('ruangan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $ruangan = Ruangan::findOrFail($id);
@@ -142,10 +118,6 @@ class RuanganController extends Controller
         return redirect()->route('ruangan.index')->with('success', 'Ruangan berhasil diperbarui!');
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $ruangan = Ruangan::findOrFail($id);

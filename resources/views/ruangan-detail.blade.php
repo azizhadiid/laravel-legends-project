@@ -4,7 +4,7 @@
 
 @section('konten')
 <div class="container mt-5">
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-md-6">
             <img src="{{ asset('img/ruangan/' . $ruangan->gambar) }}" class="img-fluid rounded mb-3 mb-md-0" alt="{{ $ruangan->nama_ruangan }}">
         </div>
