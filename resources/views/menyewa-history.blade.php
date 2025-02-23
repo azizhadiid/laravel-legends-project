@@ -14,16 +14,6 @@
             </div>
             @endif
 
-
-            <!-- Pencarian -->
-            <form action="{{ route('sewa.history') }}" method="GET" class="mb-4">
-                <div class="input-group">
-                    <input type="text" name="search" class="form-control rounded-start"
-                        placeholder="Cari berdasarkan nama ruang atau acara..." value="{{ request('search') }}">
-                    <button type="submit" class="btn text-white" style="background-color: #8B5A2B;">🔍 Cari</button>
-                </div>
-            </form>
-
             <!-- Tabel Riwayat -->
             <div class="table-responsive">
                 <table class="table table-bordered table-hover rounded-3 overflow-hidden">
@@ -37,6 +27,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($history->isEmpty())
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">Belum ada riwayat pemesanan.</td>
+                        </tr>
+                        @else
                         @forelse ($history as $sewa)
                         <tr>
                             <td>{{ $sewa->ruangan->nama_ruangan }}</td>
@@ -59,6 +54,8 @@
                             <td colspan="5" class="text-center text-muted">Belum ada riwayat pemesanan.</td>
                         </tr>
                         @endforelse
+                        @endif
+
                     </tbody>
                 </table>
             </div>

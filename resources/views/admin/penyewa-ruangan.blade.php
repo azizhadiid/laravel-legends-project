@@ -30,49 +30,51 @@
                     ini, admin dapat memastikan setiap ruangan digunakan sesuai dengan ketentuan dan kebutuhan penyewa.
                 </p>
                 <!-- Table with stripped rows -->
-                <table class="table datatable">
-                    <thead>
-                        <tr>
-                            <th style="color: #B67352; font-weight: 600">No</th>
-                            <th style="color: #B67352; font-weight: 600">Nama Penyewa</th>
-                            <th style="color: #B67352; font-weight: 600">Ruangan</th>
-                            <th style="color: #B67352; font-weight: 600">Jam Mulai</th>
-                            <th style="color: #B67352; font-weight: 600">Jam Selesai</th>
-                            <th style="color: #B67352; font-weight: 600">Keperluan</th>
-                            <th style="color: #B67352; font-weight: 600">Aksi</th>
-                        </tr>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($sewaRuangan as $index => $sewa)
-                        <tr>
-                            <td style="color: #B67352; font-weight: 400">{{ $index + 1 }}</td>
-                            <td style="color: #B67352; font-weight: 400">{{ $sewa->user->nama }}</td>
-                            <td style="color: #B67352; font-weight: 400">{{ $sewa->ruangan->nama_ruangan }}</td>
-                            <td style="color: #B67352; font-weight: 400">{{ $sewa->jam_mulai }}</td>
-                            <td style="color: #B67352; font-weight: 400">{{ $sewa->jam_selesai }}</td>
-                            <td style="color: #B67352; font-weight: 400">{{ $sewa->keperluan }}</td>
-                            <td>
-                                <div class="button-container">
-                                    <form action="{{ route('admin.sewa.verifikasi', $sewa->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="status" value="approved">
-                                        <button type="submit" class="btn approve">Approve</button>
-                                    </form>
-    
-                                    <form action="{{ route('admin.sewa.verifikasi', $sewa->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="status" value="rejected">
-                                        <button type="submit" class="btn reject">Reject</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th style="color: #B67352; font-weight: 600">No</th>
+                                <th style="color: #B67352; font-weight: 600">Nama Penyewa</th>
+                                <th style="color: #B67352; font-weight: 600">Ruangan</th>
+                                <th style="color: #B67352; font-weight: 600">Jam Mulai</th>
+                                <th style="color: #B67352; font-weight: 600">Jam Selesai</th>
+                                <th style="color: #B67352; font-weight: 600">Keperluan</th>
+                                <th style="color: #B67352; font-weight: 600">Aksi</th>
+                            </tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($sewaRuangan as $index => $sewa)
+                            <tr>
+                                <td style="color: #B67352; font-weight: 400">{{ $index + 1 }}</td>
+                                <td style="color: #B67352; font-weight: 400">{{ $sewa->user->nama }}</td>
+                                <td style="color: #B67352; font-weight: 400">{{ $sewa->ruangan->nama_ruangan }}</td>
+                                <td style="color: #B67352; font-weight: 400">{{ $sewa->jam_mulai }}</td>
+                                <td style="color: #B67352; font-weight: 400">{{ $sewa->jam_selesai }}</td>
+                                <td style="color: #B67352; font-weight: 400">{{ $sewa->keperluan }}</td>
+                                <td>
+                                    <div class="button-container">
+                                        <form action="{{ route('admin.sewa.verifikasi', $sewa->id) }}" method="POST"
+                                            class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="status" value="approved">
+                                            <button type="submit" class="btn approve">Approve</button>
+                                        </form>
+        
+                                        <form action="{{ route('admin.sewa.verifikasi', $sewa->id) }}" method="POST"
+                                            class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="status" value="rejected">
+                                            <button type="submit" class="btn reject">Reject</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 <!-- End Table with stripped rows -->
             </div>
         </div>

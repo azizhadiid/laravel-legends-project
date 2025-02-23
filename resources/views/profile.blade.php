@@ -21,7 +21,7 @@
                     @endif
 
                     <div class="text-center mb-4">
-                        <img src="{{ asset('img/' . ($user->profile->profile_picture ?? 'default.jpg')) }}"
+                        <img src="{{ asset('img/' . ($user->profile->profile_picture ?? 'test.jpg')) }}"
                             class="rounded-circle border shadow-sm" width="120" height="120" alt="Profile Picture">
                     </div>
 
@@ -49,8 +49,8 @@
                         </div>
 
                         <div class="text-center mt-4">
-                            <a href="{{ route('profile.edit') }}" class="btn btn-warning px-4">
-                                <i class="bi bi-pencil-square me-2"></i>Edit Profile
+                            <a href="{{ route('profile.edit') }}" class="btn btn-warning px-4 fw-bold" style="color: #632103">
+                                <i class="fa-solid fa-pencil" style="margin-right: 2px"></i>Edit Profile
                             </a>
                         </div>
                     </form>

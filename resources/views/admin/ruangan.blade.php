@@ -33,48 +33,50 @@
                     atau gambar ruangan, silakan unggah untuk memberikan gambaran yang lebih jelas kepada calon penyewa.
                 </p>
                 <!-- Table with stripped rows -->
-                <table class="table datatable">
-                    <thead>
-                        <tr>
-                            <th style="color: #B67352; font-weight: 600">Nama Ruangan</th>
-                            <th style="color: #B67352; font-weight: 600">Kategori</th>
-                            <th style="color: #B67352; font-weight: 600">Rating</th>
-                            <th style="color: #B67352; font-weight: 600">Lokasi</th>
-                            <th style="color: #B67352; font-weight: 600">Harga</th>
-                            <th style="color: #B67352; font-weight: 600">Foto</th>
-                            <th style="color: #B67352; font-weight: 600">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($ruangan as $r)
-                        <tr>
-                            <td style="color: #B67352; font-weight: 400">{{ $r->nama_ruangan }}</td>                            
-                            <td style="color: #B67352; font-weight: 400">{{ $r->category }}</td>
-                            <td style="color: #B67352; font-weight: 400">{{ $r->rating }}</td>
-                            <td style="color: #B67352; font-weight: 400">{{ $r->location }}</td>
-                            <td style="color: #B67352; font-weight: 400">Rp {{ number_format($r->harga, 0, ',', '.') }}</td>
-                            <td>
-                                @if($r->gambar)
-                                <img src="{{ asset('img/ruangan/' . $r->gambar) }}" alt="Foto Ruangan" width="100" class="rounded">
-                                @else
-                                Tidak ada foto
-                                @endif
-                            </td>
-                            <td>
-                                <div class="button-container">
-                                    <a href="{{ route('ruangan.edit', $r->id) }}" class="btn mb-2 button update">Edit</a>
-                                    <form action="{{ route('ruangan.destroy', $r->id) }}" method="POST" class="delete-form" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn delete-btn button logout" data-id="{{ $r->id }}">Hapus</button>
-                                    </form>
-                                </div>
-                                                              
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th style="color: #B67352; font-weight: 600">Nama Ruangan</th>
+                                <th style="color: #B67352; font-weight: 600">Kategori</th>
+                                <th style="color: #B67352; font-weight: 600">Rating</th>
+                                <th style="color: #B67352; font-weight: 600">Lokasi</th>
+                                <th style="color: #B67352; font-weight: 600">Harga</th>
+                                <th style="color: #B67352; font-weight: 600">Foto</th>
+                                <th style="color: #B67352; font-weight: 600">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($ruangan as $r)
+                            <tr>
+                                <td style="color: #B67352; font-weight: 400">{{ $r->nama_ruangan }}</td>                            
+                                <td style="color: #B67352; font-weight: 400">{{ $r->category }}</td>
+                                <td style="color: #B67352; font-weight: 400">{{ $r->rating }}</td>
+                                <td style="color: #B67352; font-weight: 400">{{ $r->location }}</td>
+                                <td style="color: #B67352; font-weight: 400">Rp {{ number_format($r->harga, 0, ',', '.') }}</td>
+                                <td>
+                                    @if($r->gambar)
+                                    <img src="{{ asset('img/ruangan/' . $r->gambar) }}" alt="Foto Ruangan" width="100" class="rounded">
+                                    @else
+                                    Tidak ada foto
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="button-container">
+                                        <a href="{{ route('ruangan.edit', $r->id) }}" class="btn mb-2 button update">Edit</a>
+                                        <form action="{{ route('ruangan.destroy', $r->id) }}" method="POST" class="delete-form" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn delete-btn button logout" data-id="{{ $r->id }}">Hapus</button>
+                                        </form>
+                                    </div>
+                                                                  
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 <!-- End Table with stripped rows -->
             </div>
         </div>

@@ -19,10 +19,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RuanganUserController;
 use App\Http\Controllers\SewaRuanganController;
 use App\Http\Controllers\AdminSewaRuanganController;
+use App\Http\Controllers\WelcomeController;
 
-Route::get('/', function () {
-  return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 // Route yang dilindungin supaya tidak sembarang akses
 Route::middleware('auth')->group(function () {

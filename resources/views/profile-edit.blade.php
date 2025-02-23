@@ -115,10 +115,10 @@
                         </div>
 
                         <div class="text-center mt-4">
-                            <button type="submit" class="btn btn-success px-4 rounded-pill fw-bold">Save
+                            <button type="submit" class="btn btn-success px-4 rounded fw-bold">Save
                                 Changes</button>
                             <a href="{{ route('profile.show') }}"
-                                class="btn btn-secondary px-4 rounded-pill fw-bold">Cancel</a>
+                                class="btn btn-secondary px-4 rounded fw-bold">Cancel</a>
                         </div>
                     </form>
                 </div>

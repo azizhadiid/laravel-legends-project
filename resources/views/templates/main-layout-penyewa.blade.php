@@ -12,6 +12,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-5/assets/css/login-5.css">
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/teams/team-2/assets/css/team-2.css">
 
     {{-- Font awasome --}}
     <script src="https://kit.fontawesome.com/3659f450a4.js" crossorigin="anonymous"></script>
@@ -160,9 +161,9 @@
 
 </head>
 
-<body style="background-color: #FEFBF6">
+<body style="background-color: #FEFBF6; padding-top: 70px;">
     {{-- navigasi --}}
-    <nav class="navbar navbar-expand-lg" style="background-color: #603F26;">
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #603F26; z-index: 1030;">
         <div class="container p-2">
             <div class="d-flex align-items-center justify-content-between flex-nowrap gap-2">
                 <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo-circle">
