@@ -10,6 +10,7 @@
 ## Menjalankan Aplikasi
 - Jalankan Migrasi.
 - Jalankan Seeder.
+- Jika ingin ke halaman admin maka ubah role menjadi 'admin' secara manual didatabase.
 - Jika ingin mengecek fitur forgot password maka ubah mail di .env menggunakan mailtrap.
 - Pastikan jaringan koneksi Wifi/Data Seluler lancar dikarenakan Mailtrap membutuhkan jaringan yang lancar.
 
