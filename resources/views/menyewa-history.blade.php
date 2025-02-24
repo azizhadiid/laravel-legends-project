@@ -23,6 +23,8 @@
                             <th>Nama Acara</th>
                             <th>Tanggal</th>
                             <th>Waktu</th>
+                            <th>Bank</th>
+                            <th>No Referensi</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -39,6 +41,8 @@
                             <td>{{ \Carbon\Carbon::parse($sewa->jam_mulai)->translatedFormat('d F Y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($sewa->jam_mulai)->format('H:i') }} -
                                 {{ \Carbon\Carbon::parse($sewa->jam_selesai)->format('H:i') }}</td>
+                            <td>{{ $sewa->bank }}</td>
+                            <td>{{ $sewa->no_tagihan }}</td>
                             <td>
                                 @if ($sewa->status == 'approved')
                                 <span class="badge bg-success">✅ Disetujui</span>
