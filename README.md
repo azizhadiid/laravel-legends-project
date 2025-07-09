@@ -82,7 +82,10 @@ legends-room/
 ```
 
 ## 🙌 Kontribusi
-Jika kamu tertarik untuk berkontribusi, silakan buat issue atau pull request. Semua masukan sangat dihargai.
+- Shakilla (Mentor)
+- Aziz Alhadiid (Project Lead and Back End)
+- Della Nursaifa Aslam (Front End)
+- Imelia Amanda (UIUX Design)
 
 ## 📬 Kontak
 📧 Email: azizalhadiid88@gmail.com
